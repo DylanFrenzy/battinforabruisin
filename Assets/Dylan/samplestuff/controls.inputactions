@@ -1,0 +1,92 @@
+{
+    "version": 1,
+    "name": "controls",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "7f5c3a27-8acb-4f77-8322-4e88db273706",
+            "actions": [
+                {
+                    "name": "Click Item",
+                    "type": "Button",
+                    "id": "c7049de3-a096-4e46-b52b-752cebf985ab",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Scroll-Card-left",
+                    "type": "Button",
+                    "id": "890f41bb-3855-4dfc-b78c-09105a79d7b0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Scroll-Card-Right",
+                    "type": "Button",
+                    "id": "fc2d0000-70f6-41d7-8899-f8bfe67408f3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9409dfeb-19b5-478b-add1-95b9a94bf654",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scroll-Card-left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "633206d7-cc60-497d-b6a7-a25a87e1b022",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scroll-Card-Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ab9c2c2d-f9d1-43a0-adae-d6e9adc320b8",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Keyboard and Mouse",
+            "bindingGroup": "Keyboard and Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
