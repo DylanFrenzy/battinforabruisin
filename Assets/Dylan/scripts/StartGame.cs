@@ -5,6 +5,8 @@ public class StartGame : MonoBehaviour
 {
     public Button StartGameButton;
     public Canvas StartMenuCanvas;
+    public Canvas UICanvas;
+    public Image BackgroundImage;
     public int playerCount = 0;
 
     public void StartTheGame()
@@ -17,5 +19,7 @@ public class StartGame : MonoBehaviour
         }
         StartGameButton.gameObject.SetActive(false);
         StartMenuCanvas.gameObject.SetActive(false);
+        UICanvas.gameObject.SetActive(true);
+        BackgroundImage.gameObject.SetActive(false);
     }
 }

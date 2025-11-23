@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 using System.Collections;
 public class dicescript : MonoBehaviour, IInteractable
 {
+    public Sprite[] Diefaces = new Sprite[6];
+
+
     private readonly float power = 10f;
     
     private Rigidbody rb;
