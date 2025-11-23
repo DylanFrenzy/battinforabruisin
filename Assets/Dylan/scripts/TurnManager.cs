@@ -22,8 +22,8 @@ public class TurnManager : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        currentPlayerTurn.OnValueChanged += OnPlayerTurnChanged;
-        currentState.OnValueChanged += OnGameStateChanged;
+        //currentPlayerTurn.OnValueChanged += OnPlayerTurnChanged;
+        //currentState.OnValueChanged += OnGameStateChanged;
 
         if (IsServer)
         {
