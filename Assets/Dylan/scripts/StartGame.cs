@@ -19,7 +19,7 @@ public class StartGame : MonoBehaviour
         }
         StartGameButton.gameObject.SetActive(false);
         StartMenuCanvas.gameObject.SetActive(false);
-        UICanvas.gameObject.SetActive(true);
         BackgroundImage.gameObject.SetActive(false);
+        UICanvas.gameObject.SetActive(true);
     }
 }
