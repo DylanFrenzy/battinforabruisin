@@ -19,9 +19,12 @@ public class GameManager : MonoBehaviour
     }
 
     public bool test;
-    public int testPlayer;
     public int testDestination;
 
+
+    public bool actionInProgress;
+
+    public int currentPlayer;
 
     public int team1Score;
     public int team2Score;
@@ -39,12 +42,13 @@ public class GameManager : MonoBehaviour
         if (test)
         {
             test = false;
-            SetPlayerDestination(testPlayer, testDestination);
+            RollToHit();
         }
     }
 
     public void SetPlayerDestination(int player, int _base)
     {
+        actionInProgress = true;
         int newBaseInt = players[player].myCurrentBase++;
 
         if (newBaseInt >= bases.Count)
@@ -56,22 +60,92 @@ public class GameManager : MonoBehaviour
         players[player].GetComponent<NavMeshAgent>().SetDestination(bases[newBaseInt].position);
     }
 
-    public void PlayerOnBase(int _base, int team)
+    public void PlayerOnBase(Player player, int _base, int team)
     {
 
         if (_base == 0)
         {
-
             switch (team)
             {
                 case 1:
                     team1Score++;
+                    actionInProgress = false;
+                    players[currentPlayer].myDestination = 0;
+                    currentPlayer++;
                     break;
                 case 2:
                     team2Score++;
+                    actionInProgress = false;
+                    players[currentPlayer].myDestination = 0;
+                    currentPlayer--;
                     break;
             }
         }
 
+
+
+        if(player.myCurrentBase < player.myDestination)
+        {
+            SetPlayerDestination(currentPlayer, player.myCurrentBase);
+        }
+        if (player.myCurrentBase == player.myDestination)
+        {
+            actionInProgress = false;
+        }
+
     }
+
+
+
+    public void RollToHit()
+    {
+        if (!actionInProgress)
+        {
+            if (players[currentPlayer].myCurrentBase == 0)
+            {
+                SetPlayerDestination(currentPlayer, 0);
+                players[currentPlayer].myDestination = 0;
+            }
+
+            d20.RollDice();
+            actionInProgress = true;
+        }
+    }
+
+    public void ReturnRollToHit(int numberRolled)
+    {
+        if(numberRolled == 20)
+        {
+            players[currentPlayer].myDestination = 999999999;
+            SetPlayerDestination(currentPlayer, players[currentPlayer].myCurrentBase);
+        }
+        else
+        {
+            if (numberRolled % 2 == 0) //even
+            {
+                Debug.Log("Hit");
+                RollToMove();
+            }  
+            
+            if (numberRolled % 2 == 1) //odd
+            {
+                Debug.Log("Miss");
+                actionInProgress = false;
+            }
+        }
+    }
+
+    public void RollToMove()
+    {
+        d4.RollDice();
+        actionInProgress = true;
+    }
+
+    public void ReturnRollToMove(int numberRolled)
+    {
+        players[currentPlayer].myDestination = players[currentPlayer].myCurrentBase + numberRolled;
+        SetPlayerDestination(currentPlayer, players[currentPlayer].myCurrentBase);
+    }
+
+
 }

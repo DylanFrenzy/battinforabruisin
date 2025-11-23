@@ -6,7 +6,7 @@ using static UnityEngine.ParticleSystem;
 public class DiceRoller : MonoBehaviour
 {
     public int diceNumber;
-
+    public int diceTotal;
 
     [Header("triggers")]
     public bool rollDice;
@@ -48,6 +48,8 @@ public class DiceRoller : MonoBehaviour
         {
             rayCast.casting = true;
         }
+
+
 
         myRigidbody.isKinematic = false;
         myRigidbody.linearVelocity = new Vector3(Random.Range(rollForceMin, rollForceMax), Random.Range(rollForceMin, rollForceMax), Random.Range(rollForceMin, rollForceMax));
@@ -99,6 +101,16 @@ public class DiceRoller : MonoBehaviour
         ////////////////////
         // Tell the game manager that I have rolled myNumber
         ////////////////////
+        ///
+
+        if (diceTotal == 20)
+        {
+            GameManager.Instance.ReturnRollToHit(diceNumber);
+        }
+        if (diceTotal == 4)
+        {
+            GameManager.Instance.ReturnRollToMove(diceNumber);
+        }
     }
 
 }

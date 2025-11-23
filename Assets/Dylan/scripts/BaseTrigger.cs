@@ -8,7 +8,7 @@ public class BaseTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Player Enter Base");
-        GameManager.Instance.PlayerOnBase(myBase, other.GetComponent<Player>().myTeam);
+        GameManager.Instance.PlayerOnBase(other.GetComponent<Player>(), myBase, other.GetComponent<Player>().myTeam);
     }
 
 }
