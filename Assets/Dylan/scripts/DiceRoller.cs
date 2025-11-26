@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class DiceRoller : MonoBehaviour
 {
     public int diceNumber;
     public int diceTotal;
+    public GameObject d20;
+    public GameObject d4;
 
     [Header("triggers")]
     public bool rollDice;
@@ -19,6 +22,13 @@ public class DiceRoller : MonoBehaviour
     public float rollForceMin;
     public float rollForceMax;
     public float rollMaxTime;
+    public CinemachineCamera mainCamera;
+    public CinemachineCamera DiceCam;
+
+    IEnumerator WaitAndProceed()
+    {
+        yield return new WaitForSeconds(0.8f);
+    }
 
 
 
@@ -31,6 +41,7 @@ public class DiceRoller : MonoBehaviour
 
     private void Start()
     {
+        print (particles);
         myRigidbody.linearVelocity = Vector3.zero;
         myRigidbody.angularVelocity = Vector3.zero;
         myRigidbody.isKinematic = true;
@@ -44,6 +55,8 @@ public class DiceRoller : MonoBehaviour
     public void RollDice()
     {
         diceRolling = true;
+        mainCamera.Priority = 0;
+        DiceCam.Priority = 20;
         foreach (DiceRayCasts rayCast in rayCasts)
         {
             rayCast.casting = true;
@@ -80,6 +93,7 @@ public class DiceRoller : MonoBehaviour
             if (forceStopRollTimer >= rollMaxTime)
             {
                 StopRolling();
+
             }
 
         }
@@ -88,6 +102,9 @@ public class DiceRoller : MonoBehaviour
     public void StopRolling()
     {
         particles.Emit(30);
+        WaitAndProceed();
+        mainCamera.Priority = 20;
+        DiceCam.Priority = 0;
         myRigidbody.linearVelocity = Vector3.zero;
         myRigidbody.angularVelocity = Vector3.zero;
         myRigidbody.isKinematic = true;

@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
+    public CinemachineCamera mainCamera;
+    public CinemachineCamera diceCamera;
     public static GameManager Instance;
 
     private void Awake()
@@ -30,7 +33,9 @@ public class GameManager : MonoBehaviour
     public int team2Score;
 
     public DiceRoller d4;
+    public GameObject D4;
     public DiceRoller d20;
+    public GameObject D20;
 
     public List<Player> players;
 
@@ -137,6 +142,7 @@ public class GameManager : MonoBehaviour
 
     public void RollToMove()
     {
+        diceCamera.LookAt = D4;
         d4.RollDice();
         actionInProgress = true;
     }
